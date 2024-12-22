@@ -1,5 +1,5 @@
 [project]
-name = "evalml"
+name = "eh-evalml"
 readme = "README.md"
 description = "an AutoML library that builds, optimizes, and evaluates machine learning pipelines using domain-specific objective functions"
 dynamic = ["version"]
@@ -48,7 +48,7 @@ dependencies = [
     "nlp-primitives >= 2.9.0",
     "networkx >= 2.7",
     "plotly >= 5.0.0",
-    "kaleido >= 0.2.0",
+#    "kaleido >= 0.2.0",
     "ipywidgets >= 7.5",
     "xgboost >= 1.7.0.post0",
     "catboost >= 1.1.1",
@@ -90,7 +90,7 @@ dev = [
     "ruff >= 0.0.228",
     "darglint >= 1.8.0",
     "pre-commit >= 2.20.0",
-    "evalml[docs,test]",
+    "eh-evalml[docs,test]",
 ]
 updater = [
     "alteryx-open-src-update-checker >= 2.1.0"
@@ -111,7 +111,7 @@ prophet = [
     "prophet >= 1.1.2",
 ]
 complete = [
-    "evalml[prophet,updater]",
+    "eh-evalml[prophet,updater]",
 ]
 
 [tool.setuptools]
