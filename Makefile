@@ -22,6 +22,7 @@ test:
 .PHONY: install-uv
 install:
 	uv sync --extra test --frozen
+	uv tool install pre-commit
 
 
 
