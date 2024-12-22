@@ -59,7 +59,7 @@ class STLDecomposer(Decomposer):
         if seasonal_smoother % 2 == 0:
             self.logger.warning(
                 f"STLDecomposer provided with an even period of {seasonal_smoother}"
-                f"Changing seasonal period to {seasonal_smoother+1}",
+                f"Changing seasonal period to {seasonal_smoother + 1}",
             )
             seasonal_smoother += 1
 

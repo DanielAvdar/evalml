@@ -77,9 +77,9 @@ def test_progress_should_continue(
         mock_results["search_order"].append(id)
         mock_results["pipeline_results"][id] = {}
         mock_results["pipeline_results"][id]["mean_cv_score"] = scores[id]
-        mock_results["pipeline_results"][id][
-            "pipeline_class"
-        ] = logistic_regression_binary_pipeline.__class__
+        mock_results["pipeline_results"][id]["pipeline_class"] = (
+            logistic_regression_binary_pipeline.__class__
+        )
         assert p.should_continue(mock_results)
 
     assert p.should_continue(
@@ -89,9 +89,9 @@ def test_progress_should_continue(
     mock_results["search_order"].append(4)
     mock_results["pipeline_results"][4] = {}
     mock_results["pipeline_results"][4]["mean_cv_score"] = 0.97
-    mock_results["pipeline_results"][4][
-        "pipeline_class"
-    ] = logistic_regression_binary_pipeline.__class__
+    mock_results["pipeline_results"][4]["pipeline_class"] = (
+        logistic_regression_binary_pipeline.__class__
+    )
 
     if early_stopping:
         assert not p.should_continue(mock_results)
@@ -118,9 +118,9 @@ def test_progress_return_progress(X_y_binary, logistic_regression_binary_pipelin
     for id in mock_results["search_order"]:
         mock_results["pipeline_results"][id] = {}
         mock_results["pipeline_results"][id]["mean_cv_score"] = scores[id]
-        mock_results["pipeline_results"][id][
-            "pipeline_class"
-        ] = logistic_regression_binary_pipeline.__class__
+        mock_results["pipeline_results"][id]["pipeline_class"] = (
+            logistic_regression_binary_pipeline.__class__
+        )
 
     p.should_continue(mock_results)
     progress_dict = p.return_progress()

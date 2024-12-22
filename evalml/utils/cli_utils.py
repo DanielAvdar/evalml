@@ -64,7 +64,7 @@ def get_sys_info():
     """
     blob = []
     try:
-        (sysname, nodename, release, version, machine, processor) = platform.uname()
+        (sysname, _nodename, release, _version, machine, processor) = platform.uname()
         blob.extend(
             [
                 ("python", ".".join(map(str, sys.version_info))),

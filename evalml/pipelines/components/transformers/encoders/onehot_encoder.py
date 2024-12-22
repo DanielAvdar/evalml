@@ -253,7 +253,7 @@ class OneHotEncoder(Transformer, metaclass=OneHotEncoderMeta):
         i = 1
         name = f"{name}_{i}"
         while name in seen_before:
-            name = f"{name[:name.rindex('_')]}_{i}"
+            name = f"{name[: name.rindex('_')]}_{i}"
             i += 1
         return name
 

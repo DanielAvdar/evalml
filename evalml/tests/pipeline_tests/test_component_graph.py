@@ -1300,9 +1300,14 @@ def test_component_graph_types_merge_mock(mock_rf_fit):
     component_graph.fit(X, y)
 
     input_feature_names = component_graph.input_feature_names
-    assert input_feature_names["Random Forest"] == (
-        ["column_2", "column_1_a", "column_1_b", "column_1_c", "column_1_d", "column_3"]
-    )
+    assert input_feature_names["Random Forest"] == ([
+        "column_2",
+        "column_1_a",
+        "column_1_b",
+        "column_1_c",
+        "column_1_d",
+        "column_3",
+    ])
     assert isinstance(mock_rf_fit.call_args[0][0].ww.logical_types["column_3"], Integer)
     assert isinstance(mock_rf_fit.call_args[0][0].ww.logical_types["column_2"], Double)
 
@@ -1457,28 +1462,26 @@ def test_component_graph_types_merge():
     component_graph.fit(X, y)
 
     input_feature_names = component_graph.input_feature_names
-    assert input_feature_names["Random Forest"] == (
-        [
-            "column_2",
-            "column_3",
-            "column_1_a",
-            "column_1_b",
-            "column_1_c",
-            "column_1_d",
-            "column_4_year",
-            "column_4_month",
-            "column_4_day_of_week",
-            "column_4_hour",
-            "DIVERSITY_SCORE(column_5)",
-            "MEAN_CHARACTERS_PER_WORD(column_5)",
-            "NUM_CHARACTERS(column_5)",
-            "NUM_WORDS(column_5)",
-            "POLARITY_SCORE(column_5)",
-            "LSA(column_5)[0]",
-            "LSA(column_5)[1]",
-            "column_6",
-        ]
-    )
+    assert input_feature_names["Random Forest"] == ([
+        "column_2",
+        "column_3",
+        "column_1_a",
+        "column_1_b",
+        "column_1_c",
+        "column_1_d",
+        "column_4_year",
+        "column_4_month",
+        "column_4_day_of_week",
+        "column_4_hour",
+        "DIVERSITY_SCORE(column_5)",
+        "MEAN_CHARACTERS_PER_WORD(column_5)",
+        "NUM_CHARACTERS(column_5)",
+        "NUM_WORDS(column_5)",
+        "POLARITY_SCORE(column_5)",
+        "LSA(column_5)[0]",
+        "LSA(column_5)[1]",
+        "column_6",
+    ])
 
 
 def test_component_graph_get_inputs_with_sampler():
@@ -2448,7 +2451,7 @@ def test_component_graph_predict_with_transformer_end(X_y_binary):
 
 
 def test_component_graph_with_invalid_y_edge(X_y_binary):
-    X, y = X_y_binary
+    _X, _y = X_y_binary
     component_dict = {
         "OHE": ["One Hot Encoder", "X", "y"],
         "RF": ["Random Forest Classifier", "OHE.x", "OHE.y"],
@@ -2473,7 +2476,9 @@ def test_training_only_component_in_component_graph_fit_and_transform_all_but_fi
     }
     component_graph = ComponentGraph(component_dict)
     component_graph.instantiate({"Drop Rows Transformer": {"indices_to_drop": [0, 9]}})
-    transformed_X, transformed_y = component_graph.fit_and_transform_all_but_final(X, y)
+    transformed_X, _transformed_y = component_graph.fit_and_transform_all_but_final(
+        X, y
+    )
     assert len(transformed_X) == len(X) - 2
 
 

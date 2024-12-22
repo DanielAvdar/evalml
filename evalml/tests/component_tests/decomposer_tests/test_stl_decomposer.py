@@ -245,7 +245,7 @@ def test_stl_decomposer_inverse_transform(
     subset_y = y.loc[y.index[: 5 * period]]
 
     decomposer = STLDecomposer(period=period)
-    output_X, output_y = decomposer.fit_transform(subset_X, subset_y)
+    _output_X, output_y = decomposer.fit_transform(subset_X, subset_y)
 
     if transformer_fit_on_data == "in-sample":
         output_inverse_y = decomposer.inverse_transform(output_y)
@@ -548,7 +548,7 @@ def test_unsupported_frequencies(
     )
 
     stl = STLDecomposer()
-    X_t, y_t = stl.fit_transform(X, y)
+    _X_t, _y_t = stl.fit_transform(X, y)
     assert stl.periods is not None
 
 
@@ -570,7 +570,7 @@ def test_init_periods(
     )(period)
     periods = {id: 8 for id in y.columns} if variateness == "multivariate" else None
     stl = STLDecomposer(period=period, periods=periods)
-    X_t, y_t = stl.fit_transform(X, y)
+    _X_t, _y_t = stl.fit_transform(X, y)
     if variateness == "univariate":
         assert stl.period == period
     else:
@@ -709,5 +709,5 @@ def test_stl_decomposer_unstack_series_id(
     X, y = multiseries_ts_data_stacked
 
     dec = STLDecomposer(series_id="series_id", time_index="date")
-    X_output, y_output = dec.fit_transform(X, y)
+    _X_output, y_output = dec.fit_transform(X, y)
     assert len(y_output.columns) == X["series_id"].nunique()

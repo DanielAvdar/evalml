@@ -1026,12 +1026,15 @@ def text_df():
 
 @pytest.fixture
 def ts_data_long():
-    X, y = pd.DataFrame(
-        {
-            "features": range(101, 193),
-            "date": pd.date_range("2020-10-01", "2020-12-31"),
-        },
-    ), pd.Series(range(1, 93))
+    X, y = (
+        pd.DataFrame(
+            {
+                "features": range(101, 193),
+                "date": pd.date_range("2020-10-01", "2020-12-31"),
+            },
+        ),
+        pd.Series(range(1, 93)),
+    )
     y.index = pd.date_range("2020-10-01", "2020-12-31")
     X.index = pd.date_range("2020-10-01", "2020-12-31")
     return X, None, y
@@ -2122,8 +2125,15 @@ class _AutoMLTestEnv:
         )
         if mock_predict_proba_in_sample is None:
             with (
-                mock_sleep
-            ), mock_fit as fit, mock_score as score, mock_get_names as get_names, mock_encode_targets as encode, mock_predict_proba as proba, mock_tell as tell, mock_optimize as optimize:
+                mock_sleep,
+                mock_fit as fit,
+                mock_score as score,
+                mock_get_names as get_names,
+                mock_encode_targets as encode,
+                mock_predict_proba as proba,
+                mock_tell as tell,
+                mock_optimize as optimize,
+            ):
                 # Can think of `yield` as blocking this method until the computation finishes running
                 yield
                 self._mock_fit = fit
@@ -2135,8 +2145,16 @@ class _AutoMLTestEnv:
                 self._mock_optimize_threshold = optimize
         else:
             with (
-                mock_sleep
-            ), mock_fit as fit, mock_score as score, mock_get_names as get_names, mock_encode_targets as encode, mock_predict_proba as proba, mock_predict_proba_in_sample as proba_in_sample, mock_tell as tell, mock_optimize as optimize:
+                mock_sleep,
+                mock_fit as fit,
+                mock_score as score,
+                mock_get_names as get_names,
+                mock_encode_targets as encode,
+                mock_predict_proba as proba,
+                mock_predict_proba_in_sample as proba_in_sample,
+                mock_tell as tell,
+                mock_optimize as optimize,
+            ):
                 # Can think of `yield` as blocking this method until the computation finishes running
                 yield
                 self._mock_fit = fit

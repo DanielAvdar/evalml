@@ -40,7 +40,7 @@ def test_numeric_columns(X_y_multi):
     "evalml.pipelines.components.transformers.preprocessing.featuretools.calculate_feature_matrix",
 )
 def test_featuretools_index(mock_calculate_feature_matrix, mock_dfs, X_y_multi):
-    X, y = X_y_multi
+    X, _y = X_y_multi
     X_pd = pd.DataFrame(X)
     X_new_index = X_pd.copy()
     index = [i for i in range(len(X))]
@@ -175,7 +175,7 @@ def test_dfs_sets_max_depth_1(mock_dfs, X_y_multi):
 
 @patch("evalml.pipelines.components.transformers.preprocessing.featuretools.dfs")
 def test_dfs_with_serialized_features(mock_dfs, X_y_binary):
-    X, y = X_y_binary
+    X, _y = X_y_binary
     X_pd = pd.DataFrame(X)
     X_pd.columns = X_pd.columns.astype(str)
 
@@ -210,7 +210,7 @@ def test_dfs_with_serialized_features_dataframe_name(
     pass_features,
     X_y_binary,
 ):
-    X, y = X_y_binary
+    X, _y = X_y_binary
     X_pd = pd.DataFrame(X)
     X_pd.columns = X_pd.columns.astype(str)
 
@@ -259,7 +259,7 @@ def test_dfs_with_empty_input_features(
     """Confirms that the features arg being an empty list is not treated the same as
     it being unspecified.
     """
-    X, y = X_y_binary
+    X, _y = X_y_binary
     X_pd = pd.DataFrame(X)
     X_pd.columns = X_pd.columns.astype(str)
 
@@ -288,7 +288,7 @@ def test_dfs_with_empty_input_features(
     "evalml.pipelines.components.transformers.preprocessing.featuretools.calculate_feature_matrix",
 )
 def test_dfs_skip_transform(mock_calculate_feature_matrix, mock_dfs, X_y_binary):
-    X, y = X_y_binary
+    X, _y = X_y_binary
     X_pd = pd.DataFrame(X)
     X_pd.columns = X_pd.columns.astype(str)
     X_fit = X_pd.iloc[: len(X) // 3]
@@ -321,7 +321,7 @@ def test_dfs_skip_transform(mock_calculate_feature_matrix, mock_dfs, X_y_binary)
 
 @patch("evalml.pipelines.components.transformers.preprocessing.featuretools.dfs")
 def test_dfs_does_not_skip_transform_with_non_identity_feature(mock_dfs, X_y_binary):
-    X, y = X_y_binary
+    X, _y = X_y_binary
     X_pd = pd.DataFrame(X)
     X_pd.columns = X_pd.columns.astype(str)
     X_fit = X_pd.iloc[: len(X) // 3]
@@ -334,7 +334,7 @@ def test_dfs_does_not_skip_transform_with_non_identity_feature(mock_dfs, X_y_bin
         index="index",
         make_index=True,
     )
-    feature_matrix, features = ft.dfs(
+    _feature_matrix, features = ft.dfs(
         entityset=es,
         target_dataframe_name="X",
         trans_primitives=["absolute"],
@@ -355,7 +355,7 @@ def test_dfs_does_not_skip_transform_with_non_identity_feature(mock_dfs, X_y_bin
 
 @patch("evalml.pipelines.components.transformers.preprocessing.featuretools.dfs")
 def test_dfs_missing_feature_column(mock_dfs, X_y_binary):
-    X, y = X_y_binary
+    X, _y = X_y_binary
     X_pd = pd.DataFrame(X)
     X_pd.columns = X_pd.columns.astype(str)
     X_fit = X_pd.iloc[: len(X) // 3]
@@ -368,7 +368,7 @@ def test_dfs_missing_feature_column(mock_dfs, X_y_binary):
         index="index",
         make_index=True,
     )
-    feature_matrix, features = ft.dfs(
+    _feature_matrix, features = ft.dfs(
         entityset=es,
         target_dataframe_name="X",
         trans_primitives=["absolute"],
@@ -389,7 +389,7 @@ def test_dfs_missing_feature_column(mock_dfs, X_y_binary):
 
 
 def test_transform_identity_and_non_identity():
-    X, y = load_diabetes()
+    X, _y = load_diabetes()
     del X.ww
 
     X_fit = X.iloc[: X.shape[0] // 2]
@@ -415,7 +415,7 @@ def test_transform_identity_and_non_identity():
 
 
 def test_dfs_multi_input_primitive(X_y_binary):
-    X, y = X_y_binary
+    X, _y = X_y_binary
     X_pd = pd.DataFrame(X)
     X_pd.columns = X_pd.columns.astype(str)
     X_fit = X_pd.iloc[: len(X) // 3]

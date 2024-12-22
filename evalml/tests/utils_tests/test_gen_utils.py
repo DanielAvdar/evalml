@@ -834,7 +834,7 @@ def test_time_series_pipeline_validates_holdout_data(
     gap,
     ts_data,
 ):
-    X, _, y = ts_data()
+    X, _, _y = ts_data()
     problem_config = {
         "time_index": "date",
         "gap": gap,

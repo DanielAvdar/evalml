@@ -442,7 +442,7 @@ def test_arima_regressor_prediction_intervals(no_features, ts_data, y_name):
 def test_arima_regressor_can_forecast_arbitrary_dates(use_covariates, ts_data):
     X, _, y = ts_data()
 
-    X_train, X_test, y_train, y_test = split_data(
+    X_train, X_test, y_train, _y_test = split_data(
         X,
         y,
         problem_type="time series regression",

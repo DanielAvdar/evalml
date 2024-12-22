@@ -302,7 +302,7 @@ def test_graph_precision_recall_curve(X_y_binary, data_type, make_data_type, go)
 
 
 def test_graph_precision_recall_curve_title_addition(X_y_binary, go):
-    X, y_true = X_y_binary
+    _X, y_true = X_y_binary
     rs = get_random_state(42)
     y_pred_proba = y_true * rs.random(y_true.shape)
     fig = graph_precision_recall_curve(
@@ -410,7 +410,7 @@ def test_roc_curve_multiclass(data_type, make_data_type):
 
 @pytest.mark.parametrize("data_type", ["np", "pd", "ww"])
 def test_graph_roc_curve_binary(X_y_binary, data_type, make_data_type, go):
-    X, y_true = X_y_binary
+    _X, y_true = X_y_binary
     rs = get_random_state(42)
     y_pred_proba = y_true * rs.random(y_true.shape)
     y_true = make_data_type(data_type, y_true)
@@ -510,7 +510,7 @@ def test_graph_roc_curve_multiclass_custom_class_names(binarized_ys, go):
 
 
 def test_graph_roc_curve_title_addition(X_y_binary, go):
-    X, y_true = X_y_binary
+    _X, y_true = X_y_binary
     rs = get_random_state(42)
     y_pred_proba = y_true * rs.random(y_true.shape)
     fig = graph_roc_curve(y_true, y_pred_proba, title_addition="with added title text")
@@ -524,7 +524,7 @@ def test_graph_roc_curve_title_addition(X_y_binary, go):
 
 @pytest.mark.parametrize("data_type", ["np", "pd", "ww"])
 def test_graph_confusion_matrix_default(X_y_binary, data_type, make_data_type, go):
-    X, y_true = X_y_binary
+    _X, y_true = X_y_binary
     rs = get_random_state(42)
     y_pred = np.round(y_true * rs.random(y_true.shape)).astype(int)
     y_true = make_data_type(data_type, y_true)
@@ -560,7 +560,7 @@ def test_graph_confusion_matrix_default(X_y_binary, data_type, make_data_type, g
 
 
 def test_graph_confusion_matrix_norm_disabled(X_y_binary, go):
-    X, y_true = X_y_binary
+    _X, y_true = X_y_binary
     rs = get_random_state(42)
     y_pred = np.round(y_true * rs.random(y_true.shape)).astype(int)
     fig = graph_confusion_matrix(y_true, y_pred, normalize_method=None)
@@ -586,7 +586,7 @@ def test_graph_confusion_matrix_norm_disabled(X_y_binary, go):
 
 
 def test_graph_confusion_matrix_title_addition(X_y_binary, go):
-    X, y_true = X_y_binary
+    _X, y_true = X_y_binary
     rs = get_random_state(42)
     y_pred = np.round(y_true * rs.random(y_true.shape)).astype(int)
     fig = graph_confusion_matrix(y_true, y_pred, title_addition="with added title text")

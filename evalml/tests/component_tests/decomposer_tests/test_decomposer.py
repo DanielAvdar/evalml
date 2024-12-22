@@ -212,7 +212,7 @@ def test_decomposer_uses_time_index(
         ):
             decomposer.fit_transform(X, y)
     else:
-        X_t, y_t = decomposer.fit_transform(X, y)
+        _X_t, _y_t = decomposer.fit_transform(X, y)
 
         # If the fit_transform() succeeds, assert the original X and y
         # have unchanged indices.
@@ -279,9 +279,9 @@ def test_decomposer_prefers_users_time_index(
 
     if err_msg:
         with pytest.raises(ValueError, match=err_msg):
-            X_t, y_t = dec.fit_transform(X, y)
+            _X_t, _y_t = dec.fit_transform(X, y)
     else:
-        X_t, y_t = dec.fit_transform(X, y)
+        _X_t, _y_t = dec.fit_transform(X, y)
         if isinstance(dec, STLDecomposer):
             assert all(dec.trends[0].index.values == expected_values)
         elif isinstance(dec, PolynomialDecomposer):
@@ -337,7 +337,7 @@ def test_decomposer_build_seasonal_signal(
     }[test_first_index]
 
     # Data spanning 2021-01-01 to 2021-02-09
-    X, _, y = ts_data()
+    _X, _, y = ts_data()
 
     # Change the date time index to start at the same time but have different frequency
     y = y.set_axis(
@@ -690,13 +690,13 @@ def test_decomposer_bad_target_index(
     variateness,
 ):
     if variateness == "univariate":
-        X, _, y = ts_data()
+        _X, _, y = ts_data()
     elif variateness == "multivariate":
         if isinstance(decomposer_child_class(), PolynomialDecomposer):
             pytest.skip(
                 "Skipping Decomposer because multiseries is not implemented for Polynomial Decomposer",
             )
-        X, _, y = ts_multiseries_data()
+        _X, _, y = ts_multiseries_data()
 
     dec = decomposer_child_class()
     y.index = pd.CategoricalIndex(["cat_index" for x in range(len(y))])
@@ -763,7 +763,7 @@ def test_decomposer_fit_transform_out_of_sample(
     decomposer.fit(subset_X, subset_y)
 
     if transformer_fit_on_data == "in-sample":
-        output_X, output_y = decomposer.transform(subset_X, subset_y)
+        _output_X, output_y = decomposer.transform(subset_X, subset_y)
         if variateness == "multivariate":
             assert_function = pd.testing.assert_frame_equal
             y_expected = y_expected = pd.DataFrame(
@@ -795,9 +795,9 @@ def test_decomposer_fit_transform_out_of_sample(
                 ValueError,
                 match="STLDecomposer cannot transform/inverse transform data out of sample",
             ):
-                output_X, output_inverse_y = decomposer.transform(None, y_new)
+                _output_X, _output_inverse_y = decomposer.transform(None, y_new)
         else:
-            output_X, output_y_t = decomposer.transform(None, y.loc[y_new.index])
+            _output_X, output_y_t = decomposer.transform(None, y.loc[y_new.index])
             if variateness == "multivariate":
                 assert_function = pd.testing.assert_frame_equal
                 y_new = pd.DataFrame([y_new, y_new]).T
@@ -873,7 +873,7 @@ def test_decomposer_inverse_transform(
     subset_y = y.loc[y.index[: 5 * period]]
 
     decomposer = decomposer_child_class(period=period)
-    output_X, output_y = decomposer.fit_transform(subset_X, subset_y)
+    _output_X, output_y = decomposer.fit_transform(subset_X, subset_y)
 
     if transformer_fit_on_data == "in-sample":
         output_inverse_y = decomposer.inverse_transform(output_y)
@@ -991,9 +991,9 @@ def test_decomposer_monthly_begin_data(
     X.index = datetime_index
     y.index = datetime_index
     X["date"] = dts
-    assert (
-        X.index.freqstr == "MS"
-    ), "The frequency string that was causing this problem in statsmodels decompose has changed."
+    assert X.index.freqstr == "MS", (
+        "The frequency string that was causing this problem in statsmodels decompose has changed."
+    )
 
     pdc = decomposer_child_class(degree=1, time_index="date")
 

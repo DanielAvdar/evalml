@@ -12,7 +12,7 @@ Before starting the release process, verify the following:
 
 EvalML uses [semantic versioning](https://semver.org/). Every release has a major, minor and patch version number, and are displayed like so: `<majorVersion>.<minorVersion>.<patchVersion>`.
 
-If you'd like to create a `development` release, which won't be deployed to pypi and conda and marked as a generally-available production release, please add a "dev" prefix to the patch version, i.e. `X.X.devX`. 
+If you'd like to create a `development` release, which won't be deployed to pypi and conda and marked as a generally-available production release, please add a "dev" prefix to the patch version, i.e. `X.X.devX`.
 * Note: this claims the patch number--if the previous release was `0.12.0`, a subsequent dev release would be `0.12.dev1`, and the following release would be `0.12.2`, *not* `0.12.1`. Development releases deploy to [test.pypi.org](https://test.pypi.org/project/evalml/) instead of to [pypi.org](https://pypi.org/project/evalml).
 
 ## 1. Freeze `main` and run perf tests
@@ -27,7 +27,7 @@ Create a release PR with the following changes:
 * Update `evalml/__init__.py` to bump `__version__` to the new version.
 * Move all entries in `docs/source/release_notes.rst` currently listed under `**Future Releases**` to be under a new heading with the version number and release date.
 * Make sure `**Future Releases**` is empty except for the sub-headings, so it's ready for new entries.
-* Populate the release PR body with a copy of this release's release notes, reformatted to [GitHub markdown](https://guides.github.com/features/mastering-markdown/). You'll reuse this text in step 2. 
+* Populate the release PR body with a copy of this release's release notes, reformatted to [GitHub markdown](https://guides.github.com/features/mastering-markdown/). You'll reuse this text in step 2.
   * You can generate the markdown by running `tools/format_release_notes.sh` locally.
 * Confirm that all release items are in the release notes under the correct header, and that no extra items are listed. You may have to do an "empty cache and hard reset" in your browser to see updates.
 
@@ -92,7 +92,7 @@ bumps the recipe to use the latest version of the package.
 In order to publish our latest conda package, we need to make some changes to the bot's PR and merge it.
 
 The bot's PR will remove the quotes around the version tag in the recipe.
-Removing these quotes will break our `build_conda_pkg` CI job so add them back in and push your changes to the bot's PR. 
+Removing these quotes will break our `build_conda_pkg` CI job so add them back in and push your changes to the bot's PR.
 For example, lines 3-5 of the [recipe](https://github.com/conda-forge/evalml-core-feedstock/blob/master/recipe/meta.yaml) should look like the following:
 ```yaml
 package:
@@ -112,7 +112,7 @@ After you make the necessary changes, merge the PR, and it passed the checks in 
 conda install -c conda-forge evalml
 ```
 
-Verify the latest version of `evalml` got installed by running 
+Verify the latest version of `evalml` got installed by running
 
 ```shell
 python -c "import evalml; print(evalml.__version__)"

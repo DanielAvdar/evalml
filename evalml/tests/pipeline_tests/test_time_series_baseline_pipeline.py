@@ -22,7 +22,7 @@ def test_time_series_baseline_gap_negative():
 
 
 def test_time_series_baseline_estimator_y_is_none(X_y_regression):
-    X, y = X_y_regression
+    X, _y = X_y_regression
 
     estimator = TimeSeriesBaselineEstimator(gap=0, forecast_horizon=2)
 

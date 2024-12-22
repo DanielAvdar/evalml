@@ -322,7 +322,7 @@ def test_delayed_feature_extractor_numpy(mock_roll):
         {"feature": range(1, 32), "date": pd.date_range("2021-01-01", periods=31)},
     )
     y = pd.Series(range(1, 32))
-    X, X_answer, y, y_answer = encode_X_y_as_strings(X, y, False, False)
+    X, _X_answer, y, y_answer = encode_X_y_as_strings(X, y, False, False)
     X_np = X.values
     y_np = y.values
     answer = pd.DataFrame(
@@ -835,14 +835,12 @@ def test_delayed_feature_transformer_conf_level(
         ),
     )
     answer = pd.DataFrame({"date": X["date"]})
-    answer = answer.assign(
-        **{
-            f"feature_delay_{t}": X["feature"].shift(
-                t,
-            )
-            for t in expected_lags
-        }
-    )
+    answer = answer.assign(**{
+        f"feature_delay_{t}": X["feature"].shift(
+            t,
+        )
+        for t in expected_lags
+    })
     answer = answer.assign(**{f"target_delay_{t}": y.shift(t) for t in expected_lags})
     # Sort columns in alphabetical order
     answer = answer.sort_index(axis=1)

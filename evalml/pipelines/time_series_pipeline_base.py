@@ -329,7 +329,7 @@ class TimeSeriesPipelineBase(PipelineBase, metaclass=PipelineBaseMeta):
             X_train.index[-X.shape[0] :],
             self.gap + X.shape[0],
         )
-        X, y = self._drop_time_index(X, pd.Series([0] * len(X)))
+        X, _y = self._drop_time_index(X, pd.Series([0] * len(X)))
         X_train, y_train = self._drop_time_index(X_train, y_train)
         X_train, y_train = self._convert_to_woodwork(X_train, y_train)
         y_holdout = self._create_empty_series(y_train, X.shape[0])

@@ -260,7 +260,7 @@ def test_stacked_ensemble_nondefault_y():
 
 
 def test_stacked_ensemble_keep_estimator_parameters(X_y_binary):
-    X, y = X_y_binary
+    _X, _y = X_y_binary
     input_pipelines = [
         BinaryClassificationPipeline(
             {
