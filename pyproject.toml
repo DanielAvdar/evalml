@@ -26,7 +26,7 @@ maintainers = [
     {name="Alteryx, Inc.", email="open_source_support@alteryx.com"}
 ]
 keywords = ["data science", "machine learning", "optimization", "automl"]
-license = {text = "BSD 3-Clause License"}
+license = {text = "BSD-3-Clause"}
 requires-python = ">=3.9,<4"
 dependencies = [
     "numpy >= 1.22.0",
@@ -116,7 +116,7 @@ complete = [
 
 [tool.setuptools]
 include-package-data = true
-license-files = ["LICENSE"]
+#license-files = ["LICENSE"]
 
 [tool.setuptools.packages.find]
 namespaces = true
