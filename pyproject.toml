@@ -117,7 +117,7 @@ complete = [
 [tool.setuptools]
 include-package-data = true
 #license-files = ["LICENSE"]
-
+license-files = []
 [tool.setuptools.packages.find]
 namespaces = true
 
