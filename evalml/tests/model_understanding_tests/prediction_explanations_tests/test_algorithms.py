@@ -178,7 +178,7 @@ def calculate_shap_for_test(training_data, y, pipeline, n_points_to_explain):
     """Helper function to compute the SHAP values for n_points_to_explain for a given pipeline."""
     points_to_explain = training_data[:n_points_to_explain]
     pipeline.fit(training_data, y)
-    shap_values, expected_value = _compute_shap_values(
+    shap_values, _expected_value = _compute_shap_values(
         pipeline,
         pd.DataFrame(points_to_explain),
         training_data,
@@ -269,16 +269,16 @@ def test_explainers(
             isinstance(class_values, dict) for class_values in explainer_values
         ), "Not all list elements are lists!"
         if is_binary:
-            assert (
-                len(explainer_values) == N_CLASSES_BINARY
-            ), "A dictionary should be returned for each class!"
+            assert len(explainer_values) == N_CLASSES_BINARY, (
+                "A dictionary should be returned for each class!"
+            )
         else:
-            assert (
-                len(explainer_values) == N_CLASSES_MULTICLASS
-            ), "A dictionary should be returned for each class!"
-        assert all(
-            len(values) == N_FEATURES for values in explainer_values
-        ), f"A {algorithm.upper()} value must be computed for every feature!"
+            assert len(explainer_values) == N_CLASSES_MULTICLASS, (
+                "A dictionary should be returned for each class!"
+            )
+        assert all(len(values) == N_FEATURES for values in explainer_values), (
+            f"A {algorithm.upper()} value must be computed for every feature!"
+        )
         for class_values in explainer_values:
             assert all(
                 isinstance(feature, list) for feature in class_values.values()
@@ -292,9 +292,9 @@ def test_explainers(
             explainer_values,
             dict,
         ), "For regression, returned values must be a dictionary!"
-        assert (
-            len(explainer_values) == N_FEATURES
-        ), f"A {algorithm.upper()} value should be computed for every feature!"
+        assert len(explainer_values) == N_FEATURES, (
+            f"A {algorithm.upper()} value should be computed for every feature!"
+        )
         assert all(
             isinstance(feature, list) for feature in explainer_values.values()
         ), "Every value in the dict must be a list!"
@@ -326,7 +326,7 @@ def test_compute_shap_values_catches_shap_tree_warnings(
     X_y_binary,
     caplog,
 ):
-    X, y = X_y_binary
+    X, _y = X_y_binary
     pipeline = BinaryClassificationPipeline(["Random Forest Classifier"])
 
     def raise_warning_from_shap(estimator, feature_perturbation):

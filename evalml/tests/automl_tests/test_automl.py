@@ -2270,9 +2270,9 @@ def test_percent_better_than_baseline_computed_for_all_objectives(
     automl.automl_algorithm._set_allowed_pipelines([DummyPipeline(parameters)])
     with patch(baseline_pipeline_class + ".score", return_value=mock_baseline_scores):
         automl.search()
-        assert (
-            len(automl.results["pipeline_results"]) == 2
-        ), "This tests assumes only one non-baseline pipeline was run!"
+        assert len(automl.results["pipeline_results"]) == 2, (
+            "This tests assumes only one non-baseline pipeline was run!"
+        )
         pipeline_results = automl.results["pipeline_results"][1]
         baseline_results = automl.results["pipeline_results"][0]
         assert pipeline_results["percent_better_than_baseline_all_objectives"] == answer
@@ -2455,9 +2455,9 @@ def test_percent_better_than_baseline_scores_different_folds(
     env = AutoMLTestEnv("binary")
     with env.test_context(score_return_value={"Log Loss Binary": 1, "F1": 1}):
         automl.search()
-    assert (
-        len(automl.results["pipeline_results"]) == 2
-    ), "This tests assumes only one non-baseline pipeline was run!"
+    assert len(automl.results["pipeline_results"]) == 2, (
+        "This tests assumes only one non-baseline pipeline was run!"
+    )
     pipeline_results = automl.results["pipeline_results"][1]
     np.testing.assert_equal(
         pipeline_results["percent_better_than_baseline_all_objectives"]["F1"],
@@ -4345,12 +4345,12 @@ def test_data_splitter_gives_pipelines_same_data(
         X_score_hashes,
         y_score_hashes,
     ]:
-        assert (
-            len(data_hash_dictionary) == n_splits
-        ), f"We should have hashes for exactly {n_splits} splits"
-        assert all(
-            len(data_hash_dictionary[i]) == 1 for i in range(n_splits)
-        ), "There should only be one hash per split."
+        assert len(data_hash_dictionary) == n_splits, (
+            f"We should have hashes for exactly {n_splits} splits"
+        )
+        assert all(len(data_hash_dictionary[i]) == 1 for i in range(n_splits)), (
+            "There should only be one hash per split."
+        )
 
 
 @patch("evalml.pipelines.utils._get_preprocessing_components")

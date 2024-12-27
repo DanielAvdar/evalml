@@ -315,7 +315,7 @@ def test_match_indices(multiseries, ts_data, ts_multiseries_data):
 
 
 def test_convert_bool_to_double(ts_data):
-    X, _, y = ts_data()
+    X, _, _y = ts_data()
     X.ww["bool"] = pd.Series([True, False] * int(len(X) / 2), index=X.index)
     res = convert_bool_to_double(X)
     for col in res.columns:

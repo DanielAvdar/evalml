@@ -140,7 +140,7 @@ def _range_for_dates(X_dt, percentiles, grid_resolution):
     # Initialize Woodwork with Double logical type so that we can calculate grid values
     # and not need to round the way we do with integer data since we're converting back to datetime
     timestamps.ww.init(logical_types={0: "Double"})
-    grid, values = _grid_from_X(
+    grid, _values = _grid_from_X(
         timestamps,
         percentiles=percentiles,
         grid_resolution=grid_resolution,

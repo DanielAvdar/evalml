@@ -1265,9 +1265,9 @@ def test_graph_partial_dependence_multiclass(
     )
     assert isinstance(fig_two_way_no_class_labels, go.Figure)
     fig_dict = fig_two_way_no_class_labels.to_dict()
-    assert (
-        len(fig_dict["data"]) == 3
-    ), "Figure does not have partial dependence data for each class."
+    assert len(fig_dict["data"]) == 3, (
+        "Figure does not have partial dependence data for each class."
+    )
     assert all([len(fig_dict["data"][i]["x"]) == 5 for i in range(3)])
     assert all([len(fig_dict["data"][i]["y"]) == 5 for i in range(3)])
     assert [fig_dict["data"][i]["name"] for i in range(3)] == [

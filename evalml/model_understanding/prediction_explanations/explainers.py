@@ -292,7 +292,7 @@ def explain_predictions_best_worst(
             else:
                 y_pred = pipeline.predict_proba(input_features)
                 y_pred_values = pipeline.predict(input_features)
-            y_true_no_nan, y_pred_no_nan, y_pred_values_no_nan = drop_rows_with_nans(
+            y_true_no_nan, y_pred_no_nan, _y_pred_values_no_nan = drop_rows_with_nans(
                 y_true,
                 y_pred,
                 y_pred_values,

@@ -121,7 +121,7 @@ def test_search_iterative_kwargs(
     X_y_binary,
 ):
     X, y = X_y_binary
-    automl, data_check_results = search_iterative(
+    automl, _data_check_results = search_iterative(
         X_train=X,
         y_train=y,
         problem_type="binary",

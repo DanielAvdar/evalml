@@ -34,7 +34,7 @@ EvalML is an AutoML library which builds, optimizes, and evaluates machine learn
 * **Model Understanding** - Provides tools to understand and introspect on models, to learn how they'll behave in your problem domain.
 * **Domain-specific** - Includes repository of domain-specific objective functions and an interface to define your own.
 
-## Installation 
+## Installation
 
 Install from [PyPI](https://pypi.org/project/evalml/):
 
@@ -63,7 +63,7 @@ conda install -c conda-forge alteryx-open-src-update-checker
 
 ## Start
 
-#### Load and split example data 
+#### Load and split example data
 ```python
 import evalml
 X, y = evalml.demos.load_breast_cancer()

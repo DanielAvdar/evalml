@@ -288,7 +288,7 @@ def test_varmax_regressor_can_forecast_arbitrary_dates_no_covariates(
     ts_multiseries_data,
 ):
     X, _, y = ts_multiseries_data(n_series=2)
-    X_train, X_test, y_train, y_test = split_data(
+    X_train, X_test, y_train, _y_test = split_data(
         X,
         y,
         problem_type="time series regression",

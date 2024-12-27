@@ -69,6 +69,6 @@ def test_log_transformer_inverse_transform(
         y = -np.abs(y)
 
     log_ = LogTransformer()
-    output_X, output_y = log_.fit_transform(X, y)
+    _output_X, output_y = log_.fit_transform(X, y)
     output_inverse_y = log_.inverse_transform(output_y)
     pd.testing.assert_series_equal(pd.Series(y), output_inverse_y, check_dtype=False)

@@ -5,7 +5,7 @@ from importlib.metadata import version
 
 # hack to prevent warnings from skopt
 # must import sklearn first
-import sklearn
+# import sklearn
 import evalml.demos
 import evalml.model_family
 import evalml.model_understanding

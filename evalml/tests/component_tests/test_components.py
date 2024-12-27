@@ -920,9 +920,9 @@ def test_transformer_transform_output_type(component_class, X_y_binary):
     ],
 )
 def test_default_parameters(cls):
-    assert (
-        cls.default_parameters == cls().parameters
-    ), f"{cls.__name__}'s default parameters don't match __init__."
+    assert cls.default_parameters == cls().parameters, (
+        f"{cls.__name__}'s default parameters don't match __init__."
+    )
 
 
 @pytest.mark.parametrize("cls", [cls for cls in all_components()])

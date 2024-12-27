@@ -114,11 +114,11 @@ def test_replace_nullable_types(nullable_data, input_type, methods_to_test):
                 "nullable_boolean_with_null",
             ]
 
-        X_t, y_t = nullable_types_replacer.transform(X)
+        X_t, _y_t = nullable_types_replacer.transform(X)
         assert set(X_t.columns) == set(X.columns)
         assert X_t.shape == X.shape
     elif methods_to_test == "fit_transform":
-        X_t, y_t = nullable_types_replacer.fit_transform(X)
+        X_t, _y_t = nullable_types_replacer.fit_transform(X)
         if input_type == "ww":
             assert set(nullable_types_replacer._nullable_int_cols) == {
                 "nullable_integer_with_null",
@@ -225,7 +225,7 @@ def test_replace_nullable_types_boolean_target(nullable_data, input_type, with_n
     else:
         assert nullable_types_replacer._nullable_target is None
 
-    X_t, y_t = nullable_types_replacer.transform(X, y)
+    _X_t, y_t = nullable_types_replacer.transform(X, y)
 
     if with_null:
         assert str(y_t.dtypes) == "category"
@@ -266,7 +266,7 @@ def test_replace_nullable_types_integer_target(nullable_data, input_type, with_n
     else:
         assert nullable_types_replacer._nullable_target is None
 
-    X_t, y_t = nullable_types_replacer.transform(X, y)
+    _X_t, y_t = nullable_types_replacer.transform(X, y)
 
     if with_null:
         assert str(y_t.dtypes) == "float64"

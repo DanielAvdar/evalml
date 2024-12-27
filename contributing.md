@@ -1,6 +1,6 @@
 ## Contributing to the Codebase
 
-#### 0. Look at Open Issues 
+#### 0. Look at Open Issues
 We currently utilize GitHub Issues as our project management tool for EvalML. Please do the following:
 * Look at our [open issues](https://github.com/alteryx/evalml/issues)
 * Find an unclaimed issue by looking for an empty `Assignees` field.
@@ -99,13 +99,13 @@ If your work includes a [breaking change](https://en.wiktionary.org/wiki/breakin
 ### 4. Updating our conda package
 
 We maintain a conda package [package](https://anaconda.org/conda-forge/evalml) to give users more options of how to install EvalML.
-Conda packages are created from recipes, which are yaml config files that list a package's dependencies and tests. Here is 
+Conda packages are created from recipes, which are yaml config files that list a package's dependencies and tests. Here is
 EvalML's latest published [recipe](https://github.com/conda-forge/evalml-core-feedstock/blob/master/recipe/meta.yaml).
 GitHub repositories containing conda recipes are called `feedstocks`.
 
 If you opened a PR to EvalML that modifies the packages in `dependencies` within `pyproject.toml`, or if the latest dependency bot
 updates the latest version of one of our packages, you will see a CI job called `build_conda_pkg`. This section describes
-what `build_conda_pkg` does and what to do if you see it fails in your pr. 
+what `build_conda_pkg` does and what to do if you see it fails in your pr.
 
 #### What is build_conda_pkg?
 `build_conda_pkg` clones the PR branch and builds the conda package from that branch. Since the conda build process runs our
@@ -126,7 +126,7 @@ This has the effect of building our conda package against your PR branch!
 One important fact to know about conda is that any change to the `master` branch of a feedstock will
 result in a new version of the conda package being published to the world!
 
-With this in mind, let's say your PR requires modifying our dependencies. 
+With this in mind, let's say your PR requires modifying our dependencies.
 If we made a change to `master`, an updated version of EvalML's latest conda package would
 be released. This means people who installed the latest version of EvalML prior to this PR would get different dependency versions
 than those who installed EvalML after the PR got merged on GitHub. This is not desirable, especially because the PR would not get shipped
@@ -143,7 +143,7 @@ It depends on the kind of PR:
 **Case 1: You're adding a completely new dependency**
 
 In this case, `build_conda_pkg` is failing simply because a dependency is missing. Adding the dependency to the recipe should
-make the check green. To add the dependency, modify the recipe located at `.github/meta.yaml`.  
+make the check green. To add the dependency, modify the recipe located at `.github/meta.yaml`.
 
 If you see that adding the dependency causes the build to fail, possibly because of conflicting versions, then iterate until
 the build passes. The team will verify if your changes make sense during PR review.

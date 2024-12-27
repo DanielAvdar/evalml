@@ -16,12 +16,13 @@ clean:
 
 .PHONY: test
 test:
-	uv run pytest evalml/ --doctest-modules --doctest-continue-on-failure  --timeout $(TIMEOUT)
+	uv run pytest evalml/ --doctest-modules --doctest-continue-on-failure
 
 
 .PHONY: install-uv
 install:
 	uv sync --extra test --frozen
+	uv tool install pre-commit
 
 
 
