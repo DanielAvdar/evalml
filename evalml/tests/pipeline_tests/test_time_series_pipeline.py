@@ -1807,7 +1807,7 @@ def test_dates_needed_for_prediction(
     ts_data,
     time_series_regression_pipeline_class,
 ):
-    X, X_t, y = ts_data(freq=freq)
+    X, _X_t, y = ts_data(freq=freq)
     X.ww.set_time_index("date")
 
     pipeline = time_series_regression_pipeline_class(
@@ -1886,7 +1886,7 @@ def test_dates_needed_for_prediction_range(
     ts_data,
     time_series_regression_pipeline_class,
 ):
-    X, X_t, y = ts_data(freq=freq)
+    X, _X_t, y = ts_data(freq=freq)
     X.ww.set_time_index("date")
 
     pipeline = time_series_regression_pipeline_class(

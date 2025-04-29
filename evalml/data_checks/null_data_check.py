@@ -208,7 +208,7 @@ class NullDataCheck(DataCheck):
             pct_null_row_threshold=self.pct_null_row_threshold,
         )
         if len(highly_null_rows) > 0:
-            warning_msg = f"{len(highly_null_rows)} out of {len(X)} rows are {self.pct_null_row_threshold*100}% or more null"
+            warning_msg = f"{len(highly_null_rows)} out of {len(X)} rows are {self.pct_null_row_threshold * 100}% or more null"
             rows_to_drop = highly_null_rows.index.tolist()
 
             messages.append(

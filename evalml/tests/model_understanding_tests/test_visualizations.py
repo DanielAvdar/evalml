@@ -248,7 +248,7 @@ def test_jupyter_graph_check(
         assert len(graph_valid) == 0
         import_check.assert_called_with("ipywidgets", warning=True)
 
-    Xr, yr = X_y_regression
+    _Xr, yr = X_y_regression
     with warnings.catch_warnings(record=True) as graph_valid:
         rs = get_random_state(42)
         y_preds = yr * rs.random(yr.shape)
@@ -550,7 +550,7 @@ def test_decision_tree_data_from_estimator_wrong_type(logit_estimator):
 
 
 def test_decision_tree_data_from_estimator(fitted_tree_estimators):
-    est_class, est_reg = fitted_tree_estimators
+    _est_class, est_reg = fitted_tree_estimators
 
     formatted_ = decision_tree_data_from_estimator(est_reg)
     tree_ = est_reg._component_obj.tree_

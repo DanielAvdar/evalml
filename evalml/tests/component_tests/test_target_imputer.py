@@ -15,7 +15,7 @@ from evalml.pipelines.components import TargetImputer
 
 
 def test_target_imputer_no_y(X_y_binary):
-    X, y = X_y_binary
+    _X, _y = X_y_binary
     imputer = TargetImputer()
     assert imputer.fit_transform(None, None) == (None, None)
 

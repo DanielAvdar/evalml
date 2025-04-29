@@ -1034,7 +1034,7 @@ class AutoMLSearch:
 
         search_desc = (
             f"{handle_problem_types(self.problem_type).name} Search\n\n"
-            f"Parameters: \n{'='*20}\n"
+            f"Parameters: \n{'=' * 20}\n"
             f"Objective: {get_objective(self.objective).name}\n"
             f"Max Time: {self.max_time}\n"
             f"Max Iterations: {self.max_iterations}\n"
@@ -1058,7 +1058,7 @@ class AutoMLSearch:
                 ["parameters"],
                 axis="columns",
             ).to_string()
-            rankings_desc = f"\nSearch Results: \n{'='*20}\n{rankings_str}"
+            rankings_desc = f"\nSearch Results: \n{'=' * 20}\n{rankings_str}"
 
         return search_desc + rankings_desc
 
@@ -1344,6 +1344,10 @@ class AutoMLSearch:
                     ),
                 )
 
+    # def _validate_holdout(self):
+    #     if self.X_holdout is None:
+    #         return
+
     def _get_baseline_pipeline(self):
         """Creates a baseline pipeline instance."""
         classification_component_graph = {
@@ -1503,9 +1507,9 @@ class AutoMLSearch:
                 self.automl_algorithm._best_pipeline_info[model_family]["id"]
                 for model_family in self.automl_algorithm._best_pipeline_info
             ]
-            self._results["pipeline_results"][pipeline_id][
-                "input_pipeline_ids"
-            ] = input_pipeline_ids
+            self._results["pipeline_results"][pipeline_id]["input_pipeline_ids"] = (
+                input_pipeline_ids
+            )
 
         self._results["search_order"].append(pipeline_id)
 
@@ -1982,8 +1986,11 @@ class AutoMLSearch:
             Note that the any pipelines that error out during scoring will not be included in the dictionary
             but the exception and stacktrace will be displayed in the log.
         """
-        X_holdout, y_holdout = infer_feature_types(X_holdout), infer_feature_types(
-            y_holdout,
+        X_holdout, y_holdout = (
+            infer_feature_types(X_holdout),
+            infer_feature_types(
+                y_holdout,
+            ),
         )
         check_all_pipeline_names_unique(pipelines)
         scores = {}

@@ -303,7 +303,7 @@ def test_schema_is_equal_column_names():
 
 
 def test_schema_is_equal_fraud(fraud_100):
-    X, y = fraud_100
+    X, _y = fraud_100
     X2 = X.copy()
     X2.ww.init()
     assert _schema_is_equal(X.ww.schema, X2.ww.schema)

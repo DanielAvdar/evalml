@@ -63,7 +63,7 @@ def test_multicollinearity_returns_warning(use_nullable_types):
     ]
     msg_list = []
     for idx, col_1 in enumerate(collinear_cols):
-        for col_2 in collinear_cols[idx + 1 : :]:
+        for col_2 in collinear_cols[idx + 1 :]:
             if col_1 != col_2:
                 msg_list.append((col_1, col_2))
 

@@ -20,7 +20,7 @@ def test_standard_scaler_applies_to_numeric_columns_only(
         },
     )
 
-    X, y = get_test_data_from_configuration(
+    X, _y = get_test_data_from_configuration(
         "ww",
         ProblemTypes.BINARY,
         column_names=[

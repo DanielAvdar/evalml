@@ -503,7 +503,7 @@ def save_plot(
     elif is_plotly and not interactive:
         fig.write_image(file=filepath, engine="kaleido")
     elif is_graphviz:
-        filepath_, format_ = os.path.splitext(filepath)
+        filepath_, format_ = os.path.splitext(filepath)  # noqa
         fig.format = "png"
         filepath = f"{filepath_}.png"
         fig.render(filename=filepath_, view=False, cleanup=True)

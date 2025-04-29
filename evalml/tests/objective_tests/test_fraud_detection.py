@@ -33,7 +33,7 @@ def test_fraud_objective(X_y_binary):
 
 
 def test_fraud_objective_function_amount_col(X_y_binary):
-    X, y = X_y_binary
+    X, _y = X_y_binary
 
     objective = FraudCost(
         retry_percentage=0.5,
